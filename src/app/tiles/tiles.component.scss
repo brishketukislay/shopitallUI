@@ -1,0 +1,17 @@
+.cardContainer{
+    width: 30%;
+    display: inline-block;
+    .itemImage{
+        height: 150px;
+        width: 150px;
+    }
+}
+@media(max-width: 570px){
+    .cardContainer{
+        display: block;
+        .itemImage{
+            height: 200px;
+            width: 200px;
+        }
+    }
+}
