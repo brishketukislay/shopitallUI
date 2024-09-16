@@ -1,1 +1,6 @@
-<p>tiles works!</p>
+<div class='cardContainer' *ngFor="let item of itemList">
+        <img class='itemImage' [src]='item.image'>
+        <div>
+            {{item.title}}
+        </div>
+</div>
