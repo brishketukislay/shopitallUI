@@ -1,4 +1,5 @@
 <div class='cardContainer' *ngFor="let item of itemList">
+    <div class='cardContent'>
         <img class='itemImage' [src]='item.image'>
         <div>
             {{item.title}}
@@ -6,4 +7,5 @@
         <div>
             Price {{item.price | currency: 'GBP'}}
         </div>
+    </div>
 </div>
