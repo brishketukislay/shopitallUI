@@ -6,13 +6,16 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TilesComponent } from './tiles/tiles.component';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { LoaderComponent } from './loader/loader.component';
 // import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    TilesComponent
+    TilesComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,8 @@ import { provideHttpClient } from '@angular/common/http';
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient()
+    provideHttpClient(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

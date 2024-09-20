@@ -1,11 +1,19 @@
+<div *ngIf="isLoading">
+    <app-loader/>
+</div>
+<!-- <div *ngIf="apiFailed">
+    Api issue please reload
+</div> -->
+<ng-container *ngIf="!isLoading">
 <div class='cardContainer' *ngFor="let item of itemList">
     <div class='cardContent'>
         <img class='itemImage' [src]='item.image'>
-        <div>
-            {{item.title}}
+        <div matTooltip=item.title>
+            {{item.title | slice:0:20}}...
         </div>
         <div>
             Price {{item.price | currency: 'GBP'}}
         </div>
     </div>
 </div>
+</ng-container>
