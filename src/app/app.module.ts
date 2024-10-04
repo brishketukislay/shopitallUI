@@ -9,7 +9,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoaderComponent } from './loader/loader.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { CandleChartComponent } from './candle-chart/candle-chart.component';
 // import { HttpClient } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
 
@@ -18,8 +17,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
     AppComponent,
     HeaderComponent,
     TilesComponent,
-    LoaderComponent,
-    CandleChartComponent
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

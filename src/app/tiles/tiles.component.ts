@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ListItemService} from '../../services/list-item.service'
-import {LoaderComponent} from '../loader/loader.component'
+// import {LoaderComponent} from '../loader/loader.component'
 
 @Component({
   selector: 'app-tiles',
