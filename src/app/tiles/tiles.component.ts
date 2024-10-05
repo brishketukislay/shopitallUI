@@ -17,14 +17,25 @@ export class TilesComponent {
     this.fetchItemList();
   }
   fetchItemList(){
-    this.listItem.getListItem().subscribe((data)=>{
-      this.isLoading = false;
+  //   this.listItem.getListItem().subscribe((data)=>{
+  //     this.isLoading = false;
+  //     this.itemList = data;
+  //   },
+  // (err)=>{
+  //   // this.isLoading = false;
+  //   this.apiFailed = true;
+  //   console.log('error',err);
+  // })
+  this.listItem.getListItem().subscribe({
+    next: (data)=>{
+            this.isLoading = false;
       this.itemList = data;
     },
-  (err)=>{
-    // this.isLoading = false;
+    error:(err)=>{
+        // this.isLoading = false;
     this.apiFailed = true;
     console.log('error',err);
+    }
   })
   }
 }
