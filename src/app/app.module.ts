@@ -11,13 +11,15 @@ import { LoaderComponent } from './loader/loader.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 // import { HttpClient } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TilesComponent,
-    LoaderComponent
+    LoaderComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
