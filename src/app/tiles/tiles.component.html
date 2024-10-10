@@ -5,10 +5,10 @@
     Api issue please reload
 </div> -->
 <ng-container *ngIf="!isLoading">
-<div class='cardContainer' *ngFor="let item of itemList">
-    <div class='cardContent'>
-        <img class='itemImage' [src]='item.image'>
-        <div matTooltip={{item.title}}>
+<div class='cardContainer' *ngFor="let item of itemList; index as index">
+    <div class='cardContent' (click)="productDetail(index)">
+        <img class='itemImage' [src]='item.image' matTooltip={{index}}>
+        <div>
             {{item.title | slice:0:20}}...
         </div>
         <div>
