@@ -12,7 +12,8 @@
             {{item.title | slice:0:20}}...
         </div>
         <div>
-            Price {{item.price | currency: 'GBP'}}
+            Price {{item.price -10 | currency: 'GBP'}}
+            <del>{{item.price}}</del>
         </div>
     </div>
 </div>
