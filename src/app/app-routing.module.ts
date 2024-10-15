@@ -5,7 +5,7 @@ import {TilesComponent} from './tiles/tiles.component'
 
 const routes: Routes = [
   // { path: '/', component: TilesComponent, pathMatch: 'full',},
-  { path: 'product-detail', component: ProductDetailsComponent, pathMatch: 'full', }
+  { path: 'product-detail', component: ProductDetailsComponent }
 ];
 
 
