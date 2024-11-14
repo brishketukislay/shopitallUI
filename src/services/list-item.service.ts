@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ListItemService {
+  itemIndex:number = 0;
 
   constructor(private http:HttpClient) { }
   getListItem():Observable<any>{

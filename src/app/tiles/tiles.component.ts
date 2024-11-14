@@ -90,7 +90,8 @@ export class TilesComponent implements OnDestroy {
         replaceUrl: true
       });
     });
-    console.log('index', index);
+    this.listItem.itemIndex = index;
+    // console.log('index', index);
   }
 
   ngOnDestroy() {
