@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ListItemService} from '../../services/list-item.service'
 
 @Component({
   selector: 'app-product-details',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent {
-
+  constructor(private listItem: ListItemService){}
+  ngOninit(){
+    console.log('list service', this.listItem.itemIndex);
+  }
 }
