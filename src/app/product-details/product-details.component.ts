@@ -7,8 +7,10 @@ import {ListItemService} from '../../services/list-item.service'
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent {
+  itemIndex:number = 0;
   constructor(private listItem: ListItemService){}
   ngOninit(){
+    this.itemIndex = this.listItem.itemIndex;
     console.log('list service', this.listItem.itemIndex);
   }
 }
