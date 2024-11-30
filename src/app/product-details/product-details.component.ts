@@ -11,6 +11,5 @@ export class ProductDetailsComponent {
   constructor(private listItem: ListItemService){}
   ngOninit(){
     this.itemIndex = this.listItem.itemIndex;
-    console.log('list service', this.listItem.itemIndex);
   }
 }
