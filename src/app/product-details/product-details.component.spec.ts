@@ -20,4 +20,7 @@ describe('ProductDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should call',()=>{
+    component.ngOninit();
+  })
 });
