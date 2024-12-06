@@ -22,5 +22,6 @@ describe('ProductDetailsComponent', () => {
   });
   it('should call',()=>{
     component.ngOninit();
+    expect(component.ngOninit).toHaveBeenCalled();
   })
 });
