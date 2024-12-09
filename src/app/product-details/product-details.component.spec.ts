@@ -21,6 +21,7 @@ describe('ProductDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should call',()=>{
+    spyOn(component,'ngOninit').and.callThrough();
     component.ngOninit();
     expect(component.ngOninit).toHaveBeenCalled();
   })
