@@ -20,4 +20,7 @@ describe('TilesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should call ngOnInit',()=>{
+    spyOn(component,'ngOnInit').and.callThrough();
+  })
 });
