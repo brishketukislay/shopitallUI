@@ -22,5 +22,7 @@ describe('TilesComponent', () => {
   });
   it('should call ngOnInit',()=>{
     spyOn(component,'ngOnInit').and.callThrough();
+    component.ngOnInit();
+    expect(component.ngOnInit).toHaveBeenCalled();
   })
 });
