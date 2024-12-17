@@ -26,6 +26,6 @@ describe('TilesComponent', () => {
     expect(component.ngOnInit).toHaveBeenCalled();
   });
   it(('should call fetchItemList'),()=>{
-    
+    spyOn(component,'fetchItemList').and.callThrough();
   })
 });
