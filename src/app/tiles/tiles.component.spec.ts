@@ -27,5 +27,6 @@ describe('TilesComponent', () => {
   });
   it(('should call fetchItemList'),()=>{
     spyOn(component,'fetchItemList').and.callThrough();
+    component.fetchItemList();
   })
 });
