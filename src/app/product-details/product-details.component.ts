@@ -8,8 +8,15 @@ import {ListItemService} from '../../services/list-item.service'
 })
 export class ProductDetailsComponent {
   itemIndex:number = 0;
+  currentListItemDetails:any;
+  cartCount: number = 0; // Tracks items added to cart
   constructor(private listItem: ListItemService){}
-  ngOninit(){
-    this.itemIndex = this.listItem.itemIndex;
+  ngOnInit(){
+    this.listItem.currentItem.subscribe((data)=>{
+      this.currentListItemDetails = data;
+    })
+  }
+  addToCart() {
+    this.cartCount++;
   }
 }
