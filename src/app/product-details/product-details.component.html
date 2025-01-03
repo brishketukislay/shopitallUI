@@ -1,3 +1,22 @@
 <div class="product-details-container">
-<div>{{itemIndex}}</div>
+    <div class="product-detail-container">
+        <div class="product-image">
+          <img [src]="currentListItemDetails?.image" [alt]="currentListItemDetails?.title" />
+        </div>
+        <div class="product-info">
+          <h1>{{ currentListItemDetails.title }}</h1>
+          <p class="category">Category: {{ currentListItemDetails?.category }}</p>
+          <p class="price">Price: {{ (currentListItemDetails?.price - (currentListItemDetails?.price * 0.10)) | currency:'GBP' }}</p>
+          <p class="rating">
+            Rating: {{ currentListItemDetails?.rating?.rate }} 
+            <span>({{ currentListItemDetails?.rating?.count }} reviews)</span>
+          </p>
+          <p class="description">{{ currentListItemDetails?.description }}</p>
+          <div class="cart-actions">
+            <button (click)="addToCart()">Add to Cart</button>
+            <span *ngIf="cartCount > 0">Items in cart: {{ cartCount }}</span>
+          </div>
+        </div>
+      </div>
+      
 </div>
