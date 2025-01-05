@@ -1,50 +1,3 @@
-// import { Component, NgZone } from '@angular/core';
-// import {ListItemService} from '../../services/list-item.service'
-// import {Router} from '@angular/router'
-// // import {LoaderComponent} from '../loader/loader.component'
-
-// @Component({
-//   selector: 'app-tiles',
-//   templateUrl: './tiles.component.html',
-//   styleUrl: './tiles.component.scss'
-// })
-// export class TilesComponent {
-//   itemList:any;
-//   isLoading:boolean = true;
-//   apiFailed:boolean = false;
-//   constructor(private listItem: ListItemService, private router:Router, private zone:NgZone){}
-//   ngOnInit(){
-//     // this.itemList = this.http.get('https://shopitall.onrender.com/api/items');
-//     this.fetchItemList();
-//   }  fetchItemList(){
-//   //   this.listItem.getListItem().subscribe((data)=>{
-//   //     this.isLoading = false;
-//   //     this.itemList = data;
-//   //   },
-//   // (err)=>{
-//   //   // this.isLoading = false;
-//   //   this.apiFailed = true;
-//   //   console.log('error',err);
-//   // })
-//   this.listItem.getListItem().subscribe({
-//     next: (data)=>{
-//             this.isLoading = false;
-//       this.itemList = data;
-//     },
-//     error:(err)=>{
-//         // this.isLoading = false;
-//     this.apiFailed = true;
-//     console.log('error',err);
-//     }
-//   })
-//   }
-//   productDetail(index:number){
-//     this.zone.run(() => { this.router.navigate(['/product-detail'], { skipLocationChange: false }) });
-    
-//     console.log('index',index)
-//   }
-// }
-//************************** */
 import { Component, OnDestroy, NgZone } from '@angular/core';
 import { ListItemService } from '../../services/list-item.service';
 import { Router } from '@angular/router';
@@ -56,9 +9,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./tiles.component.scss']
 })
 export class TilesComponent implements OnDestroy {
-  itemList: any;
+  itemList: any[] = [];
+  displayedItems: any[] = [];
   isLoading: boolean = true;
   apiFailed: boolean = false;
+  categories: string[] = [];
   private listSubscription!: Subscription;
 
   constructor(
@@ -66,6 +21,7 @@ export class TilesComponent implements OnDestroy {
     private router: Router,
     private zone: NgZone
   ) {}
+
   ngOnInit() {
     this.fetchItemList();
   }
@@ -75,6 +31,8 @@ export class TilesComponent implements OnDestroy {
       next: (data) => {
         this.isLoading = false;
         this.itemList = data;
+        this.displayedItems = [...this.itemList];
+        this.extractCategories();
       },
       error: (err) => {
         this.apiFailed = true;
@@ -83,15 +41,39 @@ export class TilesComponent implements OnDestroy {
     });
   }
 
+  extractCategories() {
+    this.categories = [...new Set(this.itemList.map(item => item.category))];
+  }
+
+  filterProducts(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const selectedCategory = target.value;
+  
+    console.log(selectedCategory);
+    if (!selectedCategory) {
+      this.displayedItems = [...this.itemList];
+    } else {
+      this.displayedItems = this.itemList.filter(item => item.category === selectedCategory);
+    }
+  }
+  
+  
+  sortProducts(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    const criteria = target.value;
+    if (criteria === 'price') {
+      this.displayedItems.sort((a, b) => a.price - b.price);
+    } else if (criteria === 'rating') {
+      this.displayedItems.sort((a, b) => b.rating.rate - a.rating.rate);
+    }
+  }
+
   productDetail(index: number) {
+    const selectedItem = this.displayedItems[index];
+    this.listItem.updateItemDetail(selectedItem);
     this.zone.run(() => {
-      this.router.navigate(['/product-detail'], {
-        queryParams: { reload: new Date().getTime() },
-        replaceUrl: true
-      });
+      this.router.navigate(['/product-detail']);
     });
-    this.listItem.itemIndex = index;
-    // console.log('index', index);
   }
 
   ngOnDestroy() {
