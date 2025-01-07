@@ -1,20 +1,42 @@
 <div *ngIf="isLoading">
     <app-loader/>
 </div>
-<!-- <div *ngIf="apiFailed">
-    Api issue please reload
-</div> -->
 <ng-container *ngIf="!isLoading">
-<div class='cardContainer' *ngFor="let item of itemList; index as index">
-    <div class='cardContent' (click)="productDetail(index)">
-        <img class='itemImage' [src]='item.image' matTooltip={{index}} alt="{{item.title | slice:0:8}}..">
-        <div>
-            {{item.title | slice:0:20}}...
+    <div class="filter-sort-container">
+        <div class="filter-container">
+            <label for="categoryFilter">Filter by Category:</label>
+            <select id="categoryFilter" (change)="filterProducts($event)">
+                <option value="">All Categories</option>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
         </div>
-        <div>
-            Price {{item.price -(item.price*.10) | currency: 'GBP'}}
-            <del>{{item.price}}</del>
+
+        <div class="sort-container">
+            <label for="sortOption">Sort by:</label>
+            <select id="sortOption" (change)="sortProducts($event)">
+                <option value="price">Price</option>
+                <option value="rating">Rating</option>
+            </select>
         </div>
     </div>
-</div>
+
+    <!-- Product Grid -->
+    <div class="card-container-wrapper">
+        <div class="card-container" *ngFor="let item of displayedItems; index as index" (click)="productDetail(index)">
+            <div class="card-content">
+                <img class="item-image" [src]="item.image" matTooltip="{{item.title}}" alt="{{item.title | slice:0:8}}...">
+                <div class="item-details">
+                    <h3>{{item.title | slice:0:20}}...</h3>
+                    <div class="price">
+                        <span class="discounted-price">
+                            {{item.price - (item.price * 0.10) | currency:'GBP'}}
+                        </span>
+                        <span class="original-price">
+                            <del>{{item.price | currency:'GBP'}}</del>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-container>
